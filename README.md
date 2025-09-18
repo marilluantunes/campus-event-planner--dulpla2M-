@@ -34,3 +34,27 @@ GitHub para versionamento e integração colaborativa
 📌 Objetivo
 
 Este projeto tem como foco o aprendizado em programação, colaboração em equipe e boas práticas com GitHub, aplicando conceitos de modularização, versionamento e integração contínua.
+
+🖥️ Como Executar no Terminal
+Passo 1 : Verifique se tem Python instalado 
+    No terminal execute:
+        python --version
+        python3 --version
+Passo 2 : Navegue até a pasta do projeto 
+    No terminal execute:
+        cd caminho/campus-event-planner--dupla2M-
+Passo 3 : Execute o programa
+    No terminal execute:
+        python main.py
+        python3 main.py
+        
+✅ Pronto! O menu será exibido no terminal. 
+
+Você poderá: 
+
+    Adicionar eventos
+    Listar, buscar, filtrar
+    Marcar como participado
+    Gerar relatórios
+    Excluir eventos
+     
