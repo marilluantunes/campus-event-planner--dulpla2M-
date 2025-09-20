@@ -1,9 +1,17 @@
 #                               ------ ESTUDANTE *A* -------
 def adicionarEvento(listaEventos, nome, data, local, categoria):
     if not nome.strip() or not data.strip() or not local.strip() or not categoria.strip():
-        print("Todos os campos devem ser preenchidos!")
+        print("Aviso: todos os campos devem ser preenchidos.")
         return False
     
+    #verificaçao de duplicatas
+    for evento in listaEventos:
+        if (evento['nome'].lower().strip() == nome.lower().strip() and \
+        evento['data'].strip() == data.strip() and \
+        evento ['categoria'].lower().strip() == categoria.lower().strip()):
+            print('Falha ao adicionar: evento já existe na lista.')
+            return False
+
     novoEvento = {
        # 'id' : novoID,
         'nome' : nome.strip(),
