@@ -1,3 +1,22 @@
+#                               ------ ESTUDANTE *A* -------
+def adicionarEvento(listaEventos, nome, data, local, categoria):
+    if not nome.strip() or not data.strip() or not local.strip() or not categoria.strip():
+        print("Todos os campos devem ser preenchidos!")
+        return False
+    
+    novoEvento = {
+       # 'id' : novoID,
+        'nome' : nome.strip(),
+        'data' : data.strip(),
+        'local' : local.strip(),
+        'categoria' : categoria.strip(),
+        'participado': False
+    }
+
+    listaEventos.append(novoEvento)
+    print(f'Evento {nome} adicionado com sucesso! ')
+    return True
+
 # =============== ESTUDANTE B: INTERFACE E RELATÓRIOS ===============
 
 def displayMenu():
