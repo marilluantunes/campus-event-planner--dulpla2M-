@@ -1,4 +1,7 @@
 #                               ------ ESTUDANTE *A* -------
+
+contador_ids = {} 
+
 def adicionarEvento(listaEventos, nome, data, local, categoria):
     if not nome.strip() or not data.strip() or not local.strip() or not categoria.strip():
         print("Aviso: todos os campos devem ser preenchidos.")
@@ -11,9 +14,20 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
         evento ['categoria'].lower().strip() == categoria.lower().strip()):
             print('Falha ao adicionar: evento já existe na lista.')
             return False
+        
+    #gera ID's baseados na Categoria
+    global contador_ids 
+    categoria_prefixo = categoria[:3].upper().strip()
+   
+    if categoria_prefixo not in contador_ids:
+        contador_ids[categoria_prefixo] = 1
+    else:
+        contador_ids[categoria_prefixo] += 1
+
+    novoID = f'{categoria_prefixo}-{contador_ids[categoria_prefixo]}'
 
     novoEvento = {
-       # 'id' : novoID,
+        'id' : novoID,
         'nome' : nome.strip(),
         'data' : data.strip(),
         'local' : local.strip(),
