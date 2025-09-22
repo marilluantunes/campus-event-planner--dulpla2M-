@@ -16,6 +16,10 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
         print("Aviso: todos os campos devem ser preenchidos.")
         return False
     
+    if not validarData(data):
+        print("Data inválida: por favor digite no formato AAAA-MM-DD")
+        return False
+    
     #verificaçao de duplicatas
     for evento in listaEventos:
         if (evento['nome'].lower().strip() == nome.lower().strip() and \
