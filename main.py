@@ -76,6 +76,29 @@ def listarEventos(listaEventos):
     return True
 
 
+def procurarEventoPorNome(listaEventos, nome):
+    nomes_encontrados = [] #lista temporaria para guardar os eventos encontrados
+    contador = 0 
+
+    for evento in listaEventos:
+        if nome.lower() in evento['nome'].lower():
+            nomes_encontrados.append(evento)
+            contador += 1
+
+    if contador == 0:
+        print(f'Nenhum evento foi encontrado com o nome: {nome}')
+    elif contador == 1:
+        print(f'1 evento encontrado com o nome: {nome}')
+    else:
+        print(f'{contador} eventos foram encontrados com o nome: {nome}')
+
+    if nomes_encontrados:
+        listarEventos(nomes_encontrados) #mostra detalhadamente o/os evento 
+     
+    return bool(nomes_encontrados)
+    
+ 
+
 # =============== ESTUDANTE B: INTERFACE E RELATÓRIOS ===============
 
 def displayMenu():
