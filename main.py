@@ -54,6 +54,28 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
     print(f'Evento {nome} adicionado com sucesso! ')
     return True
 
+def listarEventos(listaEventos):
+    if not listaEventos:
+        print('Lista de eventos vazia. Use a opção 1 para adicionar um evento')
+        return False
+    
+    #converte o valor booleano de 'participado' em texto
+    for evento in listaEventos:
+        if evento['participado']:
+            statusParticipacao = 'Sim'
+        else:
+            statusParticipacao = 'Não'
+
+        print(f'ID: {evento["id"]}')
+        print(f'Nome: {evento["nome"]}')
+        print(f'Data: {evento["data"]}')
+        print(f'Local: {evento["local"]}')
+        print(f'Categoria: {evento["categoria"]}')
+        print(f'Participado: {statusParticipacao}')
+
+    return True
+
+
 # =============== ESTUDANTE B: INTERFACE E RELATÓRIOS ===============
 
 def displayMenu():
