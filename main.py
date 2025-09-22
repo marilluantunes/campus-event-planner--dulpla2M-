@@ -1,4 +1,13 @@
 #                               ------ ESTUDANTE *A* -------
+from datetime import datetime
+
+def validarData(dataStr, formato="%Y-%m-%d"):
+    try:
+        datetime.strptime(dataStr, formato)
+        return True  
+    except ValueError:
+        return False  
+
 
 contador_ids = {} 
 
@@ -14,6 +23,8 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
         evento ['categoria'].lower().strip() == categoria.lower().strip()):
             print('Falha ao adicionar: evento já existe na lista.')
             return False
+    
+    
         
     #gera ID's baseados na Categoria
     global contador_ids 
