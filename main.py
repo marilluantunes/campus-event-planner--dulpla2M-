@@ -43,10 +43,10 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 
     novoEvento = {
         'id' : novoID,
-        'nome' : nome.strip(),
+        'nome' : nome.strip().lower(),
         'data' : data.strip(),
-        'local' : local.strip(),
-        'categoria' : categoria.strip(),
+        'local' : local.strip().lower(),
+        'categoria' : categoria.strip().lower(),
         'participado': False
     }
 
@@ -68,10 +68,10 @@ def listarEventos(listaEventos):
 
         print("\033[1;30m" + "-~~•─• Detalhes do Evento •─•~~-" + "\033[0m")
         print(f'ID: {evento["id"]}')
-        print(f'Nome: {evento["nome"]}')
+        print(f'Nome: {evento["nome"].title()}')
         print(f'Data: {evento["data"]}')
-        print(f'Local: {evento["local"]}')
-        print(f'Categoria: {evento["categoria"]}')
+        print(f'Local: {evento["local"].title()}')
+        print(f'Categoria: {evento["categoria"].title()}')
         print(f'Participado: {statusParticipacao}')
 
     return True
