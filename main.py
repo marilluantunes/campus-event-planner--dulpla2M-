@@ -66,6 +66,7 @@ def listarEventos(listaEventos):
         else:
             statusParticipacao = 'Não'
 
+        print("\033[1;30m" + "-~~•─• Detalhes do Evento •─•~~-" + "\033[0m")
         print(f'ID: {evento["id"]}')
         print(f'Nome: {evento["nome"]}')
         print(f'Data: {evento["data"]}')
