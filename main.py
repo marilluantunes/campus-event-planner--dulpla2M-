@@ -96,6 +96,13 @@ def procurarEventoPorNome(listaEventos, nome):
         listarEventos(nomes_encontrados) #mostra detalhadamente o(s) evento(s)
      
     return bool(nomes_encontrados)
+
+def deletarEvento(listaEventos, id):
+    for evento in listaEventos:
+        if id == evento['id']:
+            listaEventos.remove(evento)
+            return True      
+    return False
     
 # =============== ESTUDANTE B: INTERFACE E RELATÓRIOS ===============
 
