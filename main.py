@@ -107,7 +107,7 @@ def deletarEvento(listaEventos, id):
                 listaEventos.remove(evento)
                 print('O Evento foi removido com sucesso')
                 return True 
-            elif escolha.strip().lower() == 'nao' or 'não':
+            elif escolha.strip().lower() in ('nao','não'):
                 print('A operação está sendo cancelada')
                 return False
             else:
