@@ -61,7 +61,7 @@ def listarEventos(listaEventos):
     
     #converte o valor booleano de 'participado' em texto
     for evento in listaEventos:
-        if evento['participado']:
+        if evento['participado']: #True
             statusParticipacao = 'Sim'
         else:
             statusParticipacao = 'Não'
@@ -93,12 +93,10 @@ def procurarEventoPorNome(listaEventos, nome):
         print(f'{contador} eventos foram encontrados com o nome: {nome}')
 
     if nomes_encontrados:
-        listarEventos(nomes_encontrados) #mostra detalhadamente o/os evento 
+        listarEventos(nomes_encontrados) #mostra detalhadamente o(s) evento(s)
      
     return bool(nomes_encontrados)
     
- 
-
 # =============== ESTUDANTE B: INTERFACE E RELATÓRIOS ===============
 
 def displayMenu():
