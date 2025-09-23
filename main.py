@@ -100,9 +100,20 @@ def procurarEventoPorNome(listaEventos, nome):
 def deletarEvento(listaEventos, id):
     for evento in listaEventos:
         if id == evento['id']:
-            listaEventos.remove(evento)
-            return True      
+            print(f'Tem certeza que deseja deletar esse evento: {evento['nome']} -> ID: {evento['id']}?')
+            escolha = input('Digite "Sim" para continuar, ou digite "Não" para cancelar a operação: ')
+            if escolha.strip().lower() == 'sim':
+                listaEventos.remove(evento)
+                print('O Evento foi removido com sucesso')
+                return True 
+            elif escolha.strip().lower() == 'nao' or 'não':
+                print('A operação está sendo cancelada')
+                return False
+            else:
+                print('Resposta inválida. Digite apenas "Sim" ou "Não"')
+                return False     
     return False
+
     
 # =============== ESTUDANTE B: INTERFACE E RELATÓRIOS ===============
 
