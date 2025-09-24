@@ -13,7 +13,7 @@ contador_ids = {}
 
 def adicionarEvento(listaEventos, nome, data, local, categoria):
     if not nome.strip() or not data.strip() or not local.strip() or not categoria.strip():
-        print("Falha ao adicionar: todos os campos devem ser preenchidos.")
+        print("Aviso: todos os campos devem ser preenchidos.")
         return False
     
     if not validarData(data):
@@ -56,7 +56,7 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 
 def listarEventos(listaEventos):
     if not listaEventos:
-        print('Lista de eventos vazia. Use a opção 1 para adicionar um evento.')
+        print('Lista de eventos vazia. Use a opção 1 para adicionar um evento')
         return False
     
     #converte o valor booleano de 'participado' em texto
@@ -101,15 +101,14 @@ def procurarEventoPorNome(listaEventos, nome):
 def deletarEvento(listaEventos, id):
     for evento in listaEventos:
         if id == evento['id']:
-            print(f"Tem certeza que deseja deletar o evento: {evento['nome']} -> ID: {evento['id']}?")
-            
+            print(f"Tem certeza que deseja deletar esse evento: {evento['nome']} -> ID: {evento['id']}?")
             escolha = input('Digite "Sim" para continuar, ou digite "Não" para cancelar a operação: ')
             if escolha.strip().lower() == 'sim':
                 listaEventos.remove(evento)
-                print('O Evento foi removido com sucesso!')
+                print('O Evento foi removido com sucesso')
                 return True 
             elif escolha.strip().lower() in ('nao','não'):
-                print('A operação está sendo cancelada.')
+                print('A operação está sendo cancelada')
                 return False
             else:
                 print('Resposta inválida. Digite apenas "Sim" ou "Não"')
@@ -226,7 +225,7 @@ def main():
         elif escolha == 5:
             print("\n--- ✅ Marcar Evento como Participado ---")
             try:
-                id_evento = input("ID do evento: ")
+                id_evento = int(input("ID do evento: "))
                 marcarEventoAtendido(eventos, id_evento)
             except ValueError:
                 print("❌ ID inválido. Digite um número inteiro.")
@@ -238,7 +237,7 @@ def main():
         elif escolha == 7:
             print("\n--- 🗑️  Excluir Evento ---")
             try:
-                id_evento = input("ID do evento: ")
+                id_evento = int(input("ID do evento: "))
                 deletarEvento(eventos, id_evento)
             except ValueError:
                 print("❌ ID inválido. Digite um número inteiro.")
