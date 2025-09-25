@@ -36,6 +36,7 @@ GitHub para versionamento e integração colaborativa
 Este projeto tem como foco o aprendizado em programação, colaboração em equipe e boas práticas com GitHub, aplicando conceitos de modularização, versionamento e integração contínua.
 
 🖥️ Como Executar no Terminal
+
 *Passo 1 : Verifique se tem Python instalado 
     No terminal execute:
         python --version
@@ -59,4 +60,8 @@ Você poderá:
     Marcar como participado
     Gerar relatórios
     Excluir eventos
+
+Extra: 
+
+*** Comentários para boas práticas como o uso de métodos .set() e .get() para estudos de outras abordagens e melhoria de desempenho. ***
      
