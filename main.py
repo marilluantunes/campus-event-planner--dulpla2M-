@@ -225,7 +225,7 @@ def main():
         elif escolha == 5:
             print("\n--- ✅ Marcar Evento como Participado ---")
             try:
-                id_evento = int(input("ID do evento: "))
+                id_evento = input("ID do evento: ")
                 marcarEventoAtendido(eventos, id_evento)
             except ValueError:
                 print("❌ ID inválido. Digite um número inteiro.")
@@ -237,7 +237,7 @@ def main():
         elif escolha == 7:
             print("\n--- 🗑️  Excluir Evento ---")
             try:
-                id_evento = int(input("ID do evento: "))
+                id_evento = input("ID do evento: ")
                 deletarEvento(eventos, id_evento)
             except ValueError:
                 print("❌ ID inválido. Digite um número inteiro.")
