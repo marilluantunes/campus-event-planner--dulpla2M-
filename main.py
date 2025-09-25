@@ -203,7 +203,8 @@ def main():
         elif escolha == 1:
             print("\n--- ➕ Adicionar Novo Evento ---")
             nome = input("Nome do evento: ").strip()
-            data = input("Data (AAAA-MM-DD): ").strip()
+            #Mudar verificação de data para o formato DD-MM-AAAA
+            data = input("Data (DD-MM-AAAA): ").strip()
             local = input("Local: ").strip()
             categoria = input("Categoria: ").strip()
             adicionarEvento(eventos, nome, data, local, categoria)
