@@ -1,7 +1,7 @@
 #                               ------ ESTUDANTE *A* -------
 from datetime import datetime
 
-def validarData(dataStr, formato="%Y-%m-%d"):
+def validarData(dataStr, formato="%d-%m-%Y"):
     try:
         datetime.strptime(dataStr, formato)
         return True  
@@ -27,7 +27,16 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
         evento ['categoria'].lower().strip() == categoria.lower().strip()):
             print('Falha ao adicionar: evento já existe na lista.')
             return False
-    
+        
+#     # Outra abordagem usando tuplas e sets (mais eficiente para listas grandes)
+#     evento_chave = (nome.lower().strip(), data.strip(), categoria.lower().strip())
+# +     chaves_existentes = set(
+# +         (evento['nome'].lower().strip(), evento['data'].strip(), evento['categoria'].lower().strip())
+# +         for evento in listaEventos
+# +     )
+# +     if evento_chave in chaves_existentes:
+# +         print('Falha ao adicionar: evento já existe na lista.')
+# +         return False
     
         
     #gera ID's baseados na Categoria
@@ -139,16 +148,27 @@ def getEscolhaDoUsuario():
         return -1
 
 def filtrarEventosPorCategoria(listaEventos, categoria):
+    encontrados = []
     categoria = categoria.strip().lower()
-    encontrados = [evento for evento in listaEventos if categoria in evento["categoria"].lower()]
+
+    # Exemplo abaixo usando list comprehension
+    # encontrados = [evento for evento in listaEventos if categoria in evento["categoria"].lower()]
+    
+    for evento in listaEventos:
+        if categoria in evento["categoria"].lower():
+            encontrados.append(evento)
+            
     if encontrados:
         print(f"\n🏷️  Eventos na categoria '{categoria}':")
         for evento in encontrados:
-            status = "✅ Participado" if evento.get("participado", False) else "❌ Não participado"
+            # Usando get() para evitar erro se a chave não existir
+            # status = "✅ Participado" if evento.get("participado", False) else "❌ Não participado"
+            status = "✅ Participado" if evento["participado"] else "❌ Não participado"
             print(f"ID: {evento['id']} | Nome: {evento['nome']} | Data: {evento['data']} | "
                   f"Local: {evento['local']} | {status}")
-    else:
+    elif not encontrados:
         print(f"Nenhum evento encontrado na categoria '{categoria}'.")
+        return False
     return encontrados
 
 def marcarEventoAtendido(listaEventos, id):
@@ -171,8 +191,16 @@ def gerarRelatorio(listaEventos):
 
     for evento in listaEventos:
         cat = evento["categoria"]
-        categorias[cat] = categorias.get(cat, 0) + 1
-        if evento.get("participado", False):
+        # Usando get() para inicializar ou incrementar
+        # categorias[cat] = categorias.get(cat, 0) + 1
+        if cat in categorias:
+            categorias[cat] += 1
+        else:
+            categorias[cat] = 1
+                
+        # if evento.get("participado", False):
+        #     participados += 1
+        if evento["participado"]:
             participados += 1
 
     perc_participados = (participados / total) * 100 if total > 0 else 0
@@ -203,7 +231,6 @@ def main():
         elif escolha == 1:
             print("\n--- ➕ Adicionar Novo Evento ---")
             nome = input("Nome do evento: ").strip()
-            #Mudar verificação de data para o formato DD-MM-AAAA
             data = input("Data (DD-MM-AAAA): ").strip()
             local = input("Local: ").strip()
             categoria = input("Categoria: ").strip()
