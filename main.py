@@ -173,7 +173,7 @@ def filtrarEventosPorCategoria(listaEventos, categoria):
 
 def marcarEventoAtendido(listaEventos, id):
     for evento in listaEventos:
-        if evento["id"] == id:
+        if evento["id"] == id.upper().strip():
             evento["participado"] = True
             print(f"✅ Evento '{evento['nome']}' (ID: {id}) marcado como participado!")
             return True
