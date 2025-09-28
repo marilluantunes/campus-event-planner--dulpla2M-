@@ -9,7 +9,7 @@ def validarData(dataStr, formato="%d-%m-%Y"):
         return False  
 
 
-contador_ids = {} 
+contador_ids = 0
 
 def adicionarEvento(listaEventos, nome, data, local, categoria):
     if not nome.strip() or not data.strip() or not local.strip() or not categoria.strip():
@@ -39,16 +39,10 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
 # +         return False
     
         
-    #gera ID's baseados na Categoria
+    #gerador de ID's 
     global contador_ids 
-    categoria_prefixo = categoria[:3].upper().strip()
-   
-    if categoria_prefixo not in contador_ids:
-        contador_ids[categoria_prefixo] = 1
-    else:
-        contador_ids[categoria_prefixo] += 1
-
-    novoID = f'{categoria_prefixo}-{contador_ids[categoria_prefixo]}'
+    contador_ids += 1
+    novoID = f'{"EVT"}-{contador_ids}'
 
     novoEvento = {
         'id' : novoID,
