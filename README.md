@@ -1,4 +1,11 @@
 # campus-event-planner--dulpla2M-
+
+# Estudantes
+| Nome|
+| ------------------------------|
+| MARIA LUIZA ANTUNES |
+| MATHEUS FERNANDES|
+
 Gerenciador de Eventos IFB 🎉
 
 Uma aplicação em Python baseada em console desenvolvida para auxiliar no gerenciamento de eventos do Instituto Federal de Brasília (IFB).
