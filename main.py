@@ -95,11 +95,15 @@ def listarEventos(listaEventos):
 
 
 def procurarEventoPorNome(listaEventos, nome):
+    if not nome.strip():
+         print('\n❌ Por favor, digite um nome para busca.')
+         return False
+    
     nomes_encontrados = [] #lista temporaria para guardar os eventos encontrados
     contador = 0 
 
     for evento in listaEventos:
-        if nome.lower() in evento['nome'].lower():
+        if nome.lower().strip() in evento['nome'].lower().strip():
             nomes_encontrados.append(evento)
             contador += 1
 
