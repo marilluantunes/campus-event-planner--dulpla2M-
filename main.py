@@ -13,11 +13,12 @@ contador_ids = 0
 
 def adicionarEvento(listaEventos, nome, data, local, categoria):
     if not nome.strip() or not data.strip() or not local.strip() or not categoria.strip():
-        print("Aviso: todos os campos devem ser preenchidos.")
+        print('\n❌ Falha ao adicionar: todos os campos devem ser preenchidos!')
         return False
     
     if not validarData(data):
-        print("Data inválida: por favor digite no formato AAAA-MM-DD")
+        print('\n❌ Data inválida! Use o formato DD-MM-AAAA.')
+        #print("Data inválida: por favor digite no formato DD-MM-AAAA.")
         return False
     
     #verificaçao de duplicatas
@@ -25,8 +26,8 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
         if (evento['nome'].lower().strip() == nome.lower().strip() and \
         evento['data'].strip() == data.strip() and \
         evento ['categoria'].lower().strip() == categoria.lower().strip()):
-            print('Falha ao adicionar: evento já existe na lista.')
-            return False
+             print('\n⚠️ Falha ao adicionar: evento já existe na lista.')
+             return False
         
 #     # Outra abordagem usando tuplas e sets (mais eficiente para listas grandes)
 #     evento_chave = (nome.lower().strip(), data.strip(), categoria.lower().strip())
@@ -54,13 +55,15 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
     }
 
     listaEventos.append(novoEvento)
-    print(f'Evento {nome} adicionado com sucesso! ')
+    print(f"\n🎉 Evento '{nome.title()}' adicionado com sucesso! ID: {novoID} ✅")
     return True
 
 def listarEventos(listaEventos):
     if not listaEventos:
-        print('Lista de eventos vazia. Use a opção 1 para adicionar um evento')
+        print('\n 🔍 Lista de eventos vazia. Use a opção 1 para adicionar um evento.')
         return False
+    
+    print("\n🎉 EVENTOS CADASTRADOS!")
     
     #converte o valor booleano de 'participado' em texto
     for evento in listaEventos:
@@ -69,13 +72,24 @@ def listarEventos(listaEventos):
         else:
             statusParticipacao = 'Não'
 
-        print("\033[1;30m" + "-~~•─• Detalhes do Evento •─•~~-" + "\033[0m")
-        print(f'ID: {evento["id"]}')
-        print(f'Nome: {evento["nome"].title()}')
-        print(f'Data: {evento["data"]}')
-        print(f'Local: {evento["local"].title()}')
-        print(f'Categoria: {evento["categoria"].title()}')
-        print(f'Participado: {statusParticipacao}')
+        print("\n╔" + "═"*40 + "╗")
+        print(f"║ 🆔 ID: \033[1;36m{evento['id']:<32}\033[0m║")
+        print(f"║ 📌 Nome: \033[1;33m{evento['nome'].title():<30}\033[0m║")
+        print(f"║ 🗓️  Data: \033[1;35m{evento['data']:<29}\033[0m║")
+        print(f"║ 📍 Local: \033[1;34m{evento['local'].title():<29}\033[0m║")
+        print(f"║ 🏷️  Categoria: \033[1;32m{evento['categoria'].title():<24}\033[0m║")
+        print(f"║ {'✅ Participado' if evento['participado'] else '❌ Não Participado':<38}║")
+        print("╚" + "═"*40 + "╝")
+
+
+
+        # print("\033[1;30m" + "-~~•─• Detalhes do Evento •─•~~-" + "\033[0m")
+        # print(f'ID: {evento["id"]}')
+        # print(f'Nome: {evento["nome"].title()}')
+        # print(f'Data: {evento["data"]}')
+        # print(f'Local: {evento["local"].title()}')
+        # print(f'Categoria: {evento["categoria"].title()}')
+        # print(f'Participado: {statusParticipacao}')
 
     return True
 
@@ -90,11 +104,11 @@ def procurarEventoPorNome(listaEventos, nome):
             contador += 1
 
     if contador == 0:
-        print(f'Nenhum evento foi encontrado com o nome: {nome}')
+        print(f'\n 🔍 Nenhum evento foi encontrado com o nome: {nome.strip()}')
     elif contador == 1:
-        print(f'1 evento encontrado com o nome: {nome}')
+        print(f'\n ✅ 1 evento encontrado com o nome: {nome.strip()}')
     else:
-        print(f'{contador} eventos foram encontrados com o nome: {nome}')
+        print(f'\n ✅ {contador} eventos foram encontrados com o nome: {nome.strip()}')
 
     if nomes_encontrados:
         listarEventos(nomes_encontrados) #mostra detalhadamente o(s) evento(s)
@@ -104,18 +118,23 @@ def procurarEventoPorNome(listaEventos, nome):
 def deletarEvento(listaEventos, id):
     for evento in listaEventos:
         if id == evento['id']:
-            print(f"Tem certeza que deseja deletar esse evento: {evento['nome']} -> ID: {evento['id']}?")
+            print(f"\n⚠️ Tem certeza que deseja deletar este evento?\n")
+            print(f"   🆔 {evento['id']} | 📌 Nome: {evento['nome'].title()} | 📅 Data: {evento['data']} | 📍Local: {evento['local'].title()}\n")
             escolha = input('Digite "Sim" para continuar, ou digite "Não" para cancelar a operação: ')
-            if escolha.strip().lower() == 'sim':
+            print()
+
+            if escolha.strip().lower() in ('s' , 'sim'):
                 listaEventos.remove(evento)
-                print('O Evento foi removido com sucesso')
+                print('🗑️  Evento removido com sucesso!')
                 return True 
-            elif escolha.strip().lower() in ('nao','não'):
-                print('A operação está sendo cancelada')
+            elif escolha.strip().lower() in ('nao','não' , 'n'):
+                print('❌ A operação está sendo cancelada.')
                 return False
             else:
-                print('Resposta inválida. Digite apenas "Sim" ou "Não"')
-                return False     
+                print('⚠️ Resposta inválida, digite: SIM (S/Sim) ou NÃO (N/Nao)')
+                return False       
+            
+    print(f'\n 🔍 Evento com ID "{id}" não encontrado.')
     return False
 
     
