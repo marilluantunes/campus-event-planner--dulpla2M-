@@ -121,7 +121,7 @@ def procurarEventoPorNome(listaEventos, nome):
 
 def deletarEvento(listaEventos, id):
     for evento in listaEventos:
-        if id == evento['id']:
+        if id.strip().lower() == evento['id'].strip().lower():
             print(f"\n⚠️ Tem certeza que deseja deletar este evento?\n")
             print(f"   🆔 {evento['id']} | 📌 Nome: {evento['nome'].title()} | 📅 Data: {evento['data']} | 📍Local: {evento['local'].title()}\n")
             escolha = input('Digite "Sim" para continuar, ou digite "Não" para cancelar a operação: ')
