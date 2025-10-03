@@ -165,6 +165,9 @@ def getEscolhaDoUsuario():
         return -1
 
 def filtrarEventosPorCategoria(listaEventos, categoria):
+    if not categoria.strip():
+        print('\n❌ Por favor, digite uma categoria para busca.')
+        return False
     encontrados = []
     categoria = categoria.strip().lower()
 
