@@ -63,33 +63,18 @@ def listarEventos(listaEventos):
         print('\n 🔍 Lista de eventos vazia. Use a opção 1 para adicionar um evento.')
         return False
     
-    print("\n🎉 EVENTOS CADASTRADOS!")
-    
-    #converte o valor booleano de 'participado' em texto
+
     for evento in listaEventos:
-        if evento['participado']: #True
-            statusParticipacao = 'Sim'
-        else:
-            statusParticipacao = 'Não'
-
-        print("\n╔" + "═"*40 + "╗")
-        print(f"║ 🆔 ID: \033[1;36m{evento['id']:<32}\033[0m║")
-        print(f"║ 📌 Nome: \033[1;33m{evento['nome'].title():<30}\033[0m║")
-        print(f"║ 🗓️  Data: \033[1;35m{evento['data']:<29}\033[0m║")
-        print(f"║ 📍 Local: \033[1;34m{evento['local'].title():<29}\033[0m║")
-        print(f"║ 🏷️  Categoria: \033[1;32m{evento['categoria'].title():<24}\033[0m║")
-        print(f"║ {'✅ Participado' if evento['participado'] else '❌ Não Participado':<38}║")
-        print("╚" + "═"*40 + "╝")
-
-
-
-        # print("\033[1;30m" + "-~~•─• Detalhes do Evento •─•~~-" + "\033[0m")
-        # print(f'ID: {evento["id"]}')
-        # print(f'Nome: {evento["nome"].title()}')
-        # print(f'Data: {evento["data"]}')
-        # print(f'Local: {evento["local"].title()}')
-        # print(f'Categoria: {evento["categoria"].title()}')
-        # print(f'Participado: {statusParticipacao}')
+        print("\n   ⁕──────────────────────────────────────────⁕")
+        print("         -~~•─• Detalhes do Evento •─•~~-")
+        print("   ⁕ - • - • - • - • - • - • - • - •• - • - ⁕")
+        print(f"   • ID: {evento['id']}")
+        print(f"   • Nome: {evento['nome'].title()}")
+        print(f"   • Data: {evento['data']}")
+        print(f"   • Local: {evento['local'].title()}")
+        print(f"   • Categoria: {evento['categoria'].title()}")
+        print(f"   • Status: {'✅ Participado' if evento['participado'] else '⏳ Pendente'}")
+        print("   ⁕ - • - • - • - • - • - • - • - •• - • - ⁕")
 
     return True
 
